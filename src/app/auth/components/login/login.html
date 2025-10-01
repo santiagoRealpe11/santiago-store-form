@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="login($event)">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input placeholder="email" formControlName="email" matInput type="email">
+            @if (form.get('email')?.invalid && form.get('email')?.touched) {
+              <mat-error>Por favor ingresa un email válido</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs">
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input placeholder="password" formControlName="password" matInput type="password">
+            @if (form.get('password')?.invalid && form.get('password')?.touched) {
+              <mat-error>La contraseña es requerida (mínimo 6 caracteres)</mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button [disabled]="form.invalid" mat-raised-button type="submit" color="primary">
+        Ingresar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

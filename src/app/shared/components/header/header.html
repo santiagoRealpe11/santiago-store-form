@@ -1,0 +1,43 @@
+<header class="header">
+  <mat-toolbar class="header-toolbar" color="primary">
+    <mat-toolbar-row>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <a routerLink="/home">
+              <span class="logo-text">PlatziStore</span>
+            </a>
+          </div>
+
+          <nav class="nav-menu">
+            <a mat-button routerLink="/home" routerLinkActive="active">
+              <mat-icon>home</mat-icon>
+              <span>Home</span>
+            </a>
+            <a mat-button routerLink="/products" routerLinkActive="active">
+              <mat-icon>store</mat-icon>
+              <span>Products</span>
+            </a>
+            <a mat-button routerLink="/contact" routerLinkActive="active">
+              <mat-icon>contact_mail</mat-icon>
+              <span>Contact</span>
+            </a>
+          </nav>
+
+          <div class="cart-section">
+            <a
+              routerLink="/order"
+              mat-raised-button
+              [matBadge]="total$ | async"
+              matBadgeColor="warn"
+              class="cart-button"
+            >
+              <mat-icon>shopping_cart</mat-icon>
+              <span>Carrito</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+</header>

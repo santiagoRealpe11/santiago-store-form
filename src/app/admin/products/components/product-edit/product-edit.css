@@ -1,0 +1,99 @@
+/* ================================================= */
+/* Estilos Base */
+/* ================================================= */
+
+.product-edit-form {
+  max-width: 600px;
+  margin: 24px auto;
+}
+
+mat-card {
+  padding: 16px;
+  border-radius: 12px;
+  /* Transición para efectos de hover */
+  transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 🌟 EFECTO DE HOVER EN LA TARJETA 🌟 */
+mat-card:hover {
+  /* Ligeramente más grande y con sombra más profunda */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+mat-card-title {
+  font-size: 24px; /* Un poco más grande para destacar */
+  font-weight: 700;
+  color: #3f51b5; /* Color primario de Material */
+  padding-bottom: 10px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.small-width {
+  width: 200px; /* ID más compacto */
+}
+
+/* ================================================= */
+/* Transiciones en Controles (Mejora la UX) */
+/* ================================================= */
+
+/* Transición para campos de formulario al enfocarse */
+mat-form-field {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Efecto visual al enfocar el campo */
+.mat-mdc-form-field.mat-focused .mat-mdc-form-field-ripple {
+  transform: scaleY(1.1); /* Ligera animación al enfocar */
+}
+
+/* Compactar los inputs internos (manteniendo tu estilo) */
+.mat-mdc-input-element {
+  height: 28px !important;
+  padding: 0 0 0 0.5px !important; /* Ajuste para evitar conflictos */
+  line-height: 28px !important;
+  font-size: 15px;
+}
+
+/* ================================================= */
+/* Animaciones en Botones */
+/* ================================================= */
+
+mat-card-actions button {
+  /* Transición para color, sombra y transformación */
+  transition: all 0.25s ease-out;
+  margin-left: 8px; /* Espaciado entre botones */
+}
+
+/* 💾 Botón Guardar */
+button[type='submit'] {
+  /* Elevación inicial */
+  box-shadow: 0 2px 4px rgba(63, 81, 181, 0.4);
+}
+
+button[type='submit']:hover:not([disabled]) {
+  /* 🌟 EFECTO AL PASAR EL RATÓN: Ligero escalado y más brillo */
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(63, 81, 181, 0.6);
+}
+
+/* ❌ Botón Cancelar */
+button[color='warn']:hover {
+  /* 🌟 EFECTO AL PASAR EL RATÓN: Ligera profundidad y color más intenso */
+  transform: translateY(-1px);
+  background-color: #d32f2f !important; /* Rojo más oscuro */
+}
+
+/* Estilo para botón deshabilitado */
+button[disabled] {
+  cursor: not-allowed;
+  opacity: 0.7;
+}

@@ -1,0 +1,110 @@
+.product-form {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+mat-card {
+  width: 500px;
+  padding: 10px;
+  border-radius: 1.2rem !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  background: linear-gradient(145deg, #ffffff, #f7f7f7);
+}
+
+mat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+}
+
+mat-card-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #3f51b5;
+  padding-bottom: 10px;
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.form-row {
+  margin-bottom: 1rem;
+}
+
+.full-width {
+  width: 100%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-label input{
+    height: 20px;
+}
+mat-error {
+  font-size: 0.85rem;
+  color: #d32f2f;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.small-width {
+  width: 100%;
+}
+
+.product-form .mat-mdc-form-field {
+  --mat-form-field-container-height: 40px; /* reduce altura total (default ~56px) */
+  --mat-form-field-container-vertical-padding: 0px; /* elimina padding interno */
+  font-size: 14px; /* texto un poco más compacto */
+}
+
+.preview-image {
+  max-width: 150px;
+  max-height: 150px;
+  border-radius: 0.8rem;
+  margin-top: 0.8rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeInScale 0.4s forwards;
+}
+
+.image-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+button[mat-raised-button] {
+  border-radius: 8px;
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button[mat-raised-button]:hover {
+  transform: translateY(-2px);
+  background: #303f9f;
+}

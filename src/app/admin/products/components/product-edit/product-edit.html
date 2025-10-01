@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="saveProduct($event)" class="product-edit-form">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>✏️ Editar Producto</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- ID (readonly para no permitir cambios) -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="small-width">
+          <mat-label>ID</mat-label>
+          <input matInput formControlName="id" type="text" readonly>
+        </mat-form-field>
+      </div>
+
+      <!-- Título -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Título</mat-label>
+          <input matInput placeholder="Ingrese título" formControlName="title" type="text">
+        </mat-form-field>
+      </div>
+
+      <!-- Precio -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Precio</mat-label>
+          <input matInput placeholder="Ingrese precio" formControlName="price" type="number">
+          <mat-hint align="end">Máximo: 10000</mat-hint>
+        </mat-form-field>
+
+        @if (priceField?.errors && priceField?.dirty) {
+          @if (priceField?.hasError('price_invalid')) {
+            <mat-error>No te debes pasar de 10000</mat-error>
+          }
+          @if (priceField?.hasError('required')) {
+            <mat-error>El campo es requerido</mat-error>
+          }
+        }
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput placeholder="Escribe aquí" formControlName="description" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit">
+        💾 Guardar cambios
+      </button>
+      <button mat-button color="warn" type="button" (click)="router.navigate(['./admin/products'])">
+        ❌ Cancelar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

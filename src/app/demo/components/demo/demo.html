@@ -1,0 +1,52 @@
+<div class="demo-container">
+  <div class="input-section">
+    <input type="text" [(ngModel)]="title">
+    <p>{{ title }}</p>
+  </div>
+
+  <div class="input-section">
+    <input type="number" [(ngModel)]="power">
+    <p>{{ power | exponential }}</p>
+  </div>
+
+  @if (title === 'nicolas') {
+    <div class="message">este es nicolas</div>
+  }
+
+  @if (title === 'julian') {
+    <div class="message">este es julian</div>
+  }
+
+  @if (title === 'camilo') {
+    <div class="message">este es camilo</div>
+  }
+
+  @switch (title) {
+    @case ('nicolas') {
+      <p>este es nicolas</p>
+    }
+    @case ('julian') {
+      <p>este es julian</p>
+    }
+    @case ('camilo') {
+      <p>este es camilo</p>
+    }
+    @default {
+      <p>no hay match</p>
+    }
+  }
+
+  <button (click)="addItem()">Add item</button>
+
+  <ul>
+    @if (items.length === 0) {
+      <li>la lista esta vacia</li>
+    }
+    @for (name of items; track $index) {
+      <li>
+        {{ name }} {{ $index }}
+        <button (click)="deleteItem($index)">delete</button>
+      </li>
+    }
+  </ul>
+</div>

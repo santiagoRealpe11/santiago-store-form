@@ -1,0 +1,182 @@
+/* ================================================= */
+/* Estilos del Contenedor y Botón Principal */
+/* ================================================= */
+
+/* Contenedor principal para centrar o controlar el ancho */
+:host {
+  display: block;
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 🟢 Botón "Crear Nuevo Producto" */
+a[routerLink='create'] {
+  margin-bottom: 20px;
+  display: inline-block; /* Para darle espacio debajo */
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+a[routerLink='create']:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.no-products {
+  font-size: 1.1em;
+  color: #757575;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+/* ================================================= */
+/* Estilos de la Tabla (mat-table) */
+/* ================================================= */
+
+.products-table {
+  width: 100%;
+  border-radius: 12px; /* Bordes redondeados para la elevación */
+  overflow: hidden; /* Asegura que los bordes redondeados se apliquen */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezados de la Tabla */
+.mat-header-cell {
+  background-color: #f5f5f5; /* Fondo ligeramente gris para la cabecera */
+  color: #333;
+  font-weight: 700;
+  font-size: 1em;
+  padding: 16px 24px;
+}
+
+/* Filas de la Tabla */
+.mat-row {
+  transition: background-color 0.3s ease;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #fafafa; /* Raya para mejor legibilidad */
+}
+
+/* 🌟 EFECTO DE HOVER EN LA FILA 🌟 */
+.mat-row:hover {
+  background-color: #e0f7fa; /* Un color suave al pasar el ratón */
+}
+
+/* Celdas de la Tabla */
+.mat-cell {
+  padding: 12px 24px;
+  font-size: 0.95em;
+  color: #424242;
+}
+
+/* ================================================= */
+/* Estilos para Columnas Específicas */
+/* ================================================= */
+
+/* ID: centrado y compacto */
+.mat-column-id {
+  width: 80px;
+  text-align: center;
+}
+
+/* Precio: alineado a la derecha */
+.mat-column-price {
+  text-align: right;
+  font-weight: 600;
+  color: #2e7d32; /* Un color verde para el precio */
+}
+
+/* 📸 IMAGEN: Estilos para la miniatura */
+.mat-column-images {
+  width: 100px;
+  text-align: center;
+}
+
+.product-thumbnail {
+  /* ✅ TAMAÑO FIJO Y PEQUEÑO para la imagen dentro de la celda */
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+/* ================================================= */
+/* Estilos de Acciones (Botones dentro de la tabla) */
+/* ================================================= */
+
+.mat-column-actions {
+  width: 180px; /* Ancho fijo para botones */
+  text-align: center;
+}
+
+.mat-column-actions button,
+.mat-column-actions a {
+  margin: 0 4px;
+  font-size: 0.8em;
+  padding: 4px 10px;
+  line-height: 1.5; /* Ajuste para compactar botones */
+  height: 30px; /* Altura compacta */
+  border-radius: 4px;
+  transition: transform 0.2s;
+}
+
+.mat-column-actions button:hover,
+.mat-column-actions a:hover {
+  transform: translateY(-1px); /* Efecto 3D sutil */
+}
+
+/* ================================================= */
+/* Responsividad para Móviles (< 768px) */
+/* ================================================= */
+@media (max-width: 768px) {
+  /* 1. Hace que la tabla se desplace si es muy ancha */
+  :host {
+    padding: 12px;
+  }
+
+  .products-table {
+    overflow-x: auto;
+  }
+
+  /* Aseguramos que la tabla no pierda ancho */
+  .mat-table {
+    min-width: 600px;
+  }
+
+  /* 2. Ocultamos las columnas menos esenciales */
+
+  /* Ocultar ID y Precio */
+  .mat-column-id,
+  .mat-column-price {
+    display: none;
+  }
+
+  /* Ajustamos el padding de la celda de Acciones */
+  .mat-column-actions {
+    width: 140px;
+    padding: 0 5px;
+  }
+
+  /* 3. Compactamos botones */
+  .mat-column-actions button,
+  .mat-column-actions a {
+    margin: 4px 0; /* Un poco de margen vertical */
+    display: block; /* Cada botón en su propia línea */
+    width: 100%;
+  }
+
+  /* Ajustamos el padding de las celdas restantes */
+  .mat-cell,
+  .mat-header-cell {
+    padding: 8px 10px;
+  }
+}

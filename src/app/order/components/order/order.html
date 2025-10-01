@@ -1,0 +1,70 @@
+<div class="order-container">
+  <h1 class="page-title">Tu Pedido</h1>
+
+  <mat-horizontal-stepper class="order-stepper">
+    <mat-step>
+      <ng-template matStepLabel>Sus productos</ng-template>
+
+      <div class="step-content">
+        @if (products$ | async; as products) { @if (products.length === 0) {
+        <div class="empty-cart">
+          <mat-icon>shopping_cart</mat-icon>
+          <p>No hay productos en el carrito</p>
+          <button mat-raised-button color="primary" routerLink="/products">Ir a comprar</button>
+        </div>
+        } @else {
+        <div class="products-list">
+          @for (product of products; track product.id) {
+          <mat-card class="product-card">
+            <div class="product-content">
+              <div class="product-image">
+                <img [src]="product.images[0]" [alt]="product.title" />
+              </div>
+              <div class="product-info">
+                <h3>{{ product.title }}</h3>
+                <p class="product-description">{{ product.description }}</p>
+              </div>
+              <div class="product-price">
+                <span class="price">${{ product.price }}</span>
+              </div>
+            </div>
+          </mat-card>
+          }
+        </div>
+
+        <div class="step-actions">
+          <button mat-raised-button matStepperNext color="primary">Continuar</button>
+        </div>
+        } }
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Datos personales</ng-template>
+
+      <div class="step-content">
+        <h2>Información de envío</h2>
+        <p>Formulario de datos personales aquí</p>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button mat-raised-button matStepperNext color="primary">Continuar</button>
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Pago</ng-template>
+
+      <div class="step-content">
+        <h2>Método de pago</h2>
+        <p>Formulario de pago aquí</p>
+
+        <div class="step-actions">
+          <button mat-button matStepperPrevious>Atrás</button>
+          <button mat-raised-button color="primary">Finalizar compra</button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

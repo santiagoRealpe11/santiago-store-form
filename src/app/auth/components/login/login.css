@@ -1,0 +1,121 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.login-wrapper {
+  width: 100%;
+  max-width: 450px;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.login-card {
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background: white;
+}
+
+.login-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 24px 30px;
+  margin-bottom: 0;
+
+  .login-title {
+    color: white;
+    text-align: center;
+    margin: 0;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      margin: 0;
+      font-weight: 400;
+    }
+  }
+}
+
+.login-content {
+  padding: 40px 32px 24px;
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  mat-form-field {
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        background-color: #f8f9fa;
+      }
+
+      .mat-mdc-form-field-focus-overlay {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.login-actions {
+  padding: 0 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .login-button {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .login-container {
+    padding: 16px;
+  }
+
+  .login-header {
+    padding: 32px 20px 24px;
+
+    .login-title h1 {
+      font-size: 28px;
+    }
+  }
+
+  .login-content {
+    padding: 32px 24px 20px;
+  }
+
+  .login-actions {
+    padding: 0 24px 32px;
+  }
+}

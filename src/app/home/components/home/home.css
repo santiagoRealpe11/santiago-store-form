@@ -1,0 +1,55 @@
+.home-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+
+  app-banner {
+    display: block;
+    margin-bottom: 60px;
+  }
+
+  .welcome-section {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    color: white;
+    box-shadow: 0 10px 40px rgba(102, 126, 234, 0.3);
+
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      margin: 0 0 16px 0;
+      letter-spacing: -1px;
+    }
+
+    p {
+      font-size: 20px;
+      margin: 0;
+      opacity: 0.95;
+      font-weight: 400;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .home-container {
+    padding: 20px 16px;
+
+    app-banner {
+      margin-bottom: 40px;
+    }
+
+    .welcome-section {
+      padding: 40px 20px;
+
+      h1 {
+        font-size: 32px;
+      }
+
+      p {
+        font-size: 16px;
+      }
+    }
+  }
+}

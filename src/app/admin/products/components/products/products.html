@@ -1,0 +1,47 @@
+<a mat-raised-button color="primary" routerLink="create"> Crear nuevo producto </a>
+
+<!-- Mostrar mensaje o tabla usando @if / @else -->
+@if (products.length === 0) {
+<p class="no-products">No hay productos disponibles.</p>
+} @else {
+
+<table mat-table [dataSource]="products" class="mat-elevation-z8 products-table">
+  <!-- ID -->
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let product">{{ product.id }}</td>
+  </ng-container>
+
+  <!-- Title -->
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let product">{{ product.title }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="images">
+    <th mat-header-cell *matHeaderCellDef>Image</th>
+    <td mat-cell *matCellDef="let product">
+      <img [src]="product.images?.[0]" alt="product image" class="product-thumbnail" />
+    </td>
+  </ng-container>
+
+  <!-- Price -->
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef>Precio</th>
+    <td mat-cell *matCellDef="let product">{{ product.price | currency : 'USD' }}</td>
+  </ng-container>
+
+  <!-- Actions -->
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Acciones</th>
+    <td mat-cell *matCellDef="let product">
+      <a mat-raised-button color="accent" [routerLink]="['edit', product.id]"> Editar </a>
+      <button mat-raised-button color="warn" (click)="deleteProduct(product.id)">Eliminar</button>
+    </td>
+  </ng-container>
+
+  <!-- Header & Rows -->
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+}

@@ -1,0 +1,65 @@
+<form [formGroup]="form" (ngSubmit)="saveProduct($event)" class="product-form">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>🛒 Producto</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- ID -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="small-width">
+          <mat-label>Id</mat-label>
+          <input matInput placeholder="Ingrese ID" formControlName="id" type="text">
+        </mat-form-field>
+      </div>
+
+      <!-- Título -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="small-width">
+          <mat-label>Título</mat-label>
+          <input matInput placeholder="Ingrese título" formControlName="title" type="text">
+        </mat-form-field>
+      </div>
+
+      <!-- Precio -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="small-width">
+          <mat-label>Precio</mat-label>
+          <input matInput placeholder="Ingrese precio" formControlName="price" type="number">
+          <mat-hint align="end">Máximo: 10000</mat-hint>
+        </mat-form-field>
+
+        @if (priceField?.errors && priceField?.dirty) {
+          @if (priceField?.hasError('price_invalid')) {
+            <mat-error>No te debes pasar de 10000</mat-error>
+          }
+          @if (priceField?.hasError('required')) {
+            <mat-error>El campo es requerido</mat-error>
+          }
+        }
+      </div>
+
+      <!-- Descripción -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="small-width">
+          <mat-label>Descripción</mat-label>
+          <textarea matInput placeholder="Escribe aquí" formControlName="description" rows="4"></textarea>
+        </mat-form-field>
+      </div>
+
+      <!-- Imagen -->
+      <div class="form-row image-upload">
+        @if (imageUrl()) {
+          <img [src]="imageUrl()" alt="Vista previa" class="preview-image">
+        }
+        <input type="file" (change)="uploadFile($event)">
+      </div>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button [disabled]="form.invalid" mat-raised-button color="primary" type="submit">
+        Guardar
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>
