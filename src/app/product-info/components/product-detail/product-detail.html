@@ -1,1 +1,65 @@
-<p>product-detail works!</p>
+@if (product) {
+<div class="product-detail-container">
+  <div class="product-detail-content">
+    <div class="product-images">
+      <div class="main-image">
+        <img [src]="product.images[0]" [alt]="product.title" />
+      </div>
+      @if (product.images.length > 1) {
+      <div class="thumbnail-list">
+        @for (image of product.images; track image) {
+        <div class="thumbnail">
+          <img [src]="image" [alt]="product.title" />
+        </div>
+        }
+      </div>
+      }
+    </div>
+
+    <div class="product-info">
+      <mat-card class="info-card">
+        <mat-card-header>
+          <mat-card-title>{{ product.title }}</mat-card-title>
+          @if (product.category) {
+          <mat-card-subtitle>{{ product.category.name }}</mat-card-subtitle>
+          }
+        </mat-card-header>
+
+        <mat-card-content>
+          <div class="price-section">
+            <span class="price">{{ product.price | currency }}</span>
+          </div>
+
+          <div class="description-section">
+            <h3>Descripción</h3>
+            <p>{{ product.description }}</p>
+          </div>
+
+          <div class="actions-section">
+            <button mat-raised-button color="primary" class="add-to-cart-btn">
+              <mat-icon>shopping_cart</mat-icon>
+              Agregar al carrito
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+
+      <!-- Botones de desarrollo/testing -->
+      <div class="dev-actions">
+        <h4>Acciones de desarrollo</h4>
+        <div class="dev-buttons">
+          <button mat-stroked-button (click)="createProduct()">
+            <mat-icon>add</mat-icon> Crear
+          </button>
+          <button mat-stroked-button (click)="updateProduct()">
+            <mat-icon>edit</mat-icon> Actualizar
+          </button>
+          <button mat-stroked-button color="warn" (click)="deleteProduct()">
+            <mat-icon>delete</mat-icon> Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

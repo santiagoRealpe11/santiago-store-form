@@ -2,12 +2,13 @@
 /* Estilos del Contenedor y Botón Principal */
 /* ================================================= */
 
-/* Contenedor principal para centrar o controlar el ancho */
+/* Contenedor principal para Ocupar 100% del ancho disponible */
 :host {
   display: block;
-  padding: 24px;
-  max-width: 1200px;
-  margin: 0 auto;
+  /* ✅ Mantenemos el padding */
+  padding: 24px; 
+  /* ❌ ELIMINADAS: 'max-width: 1200px;' y 'margin: 0 auto;' */
+  /* El ancho será 100% del contenedor padre (mat-sidenav-content) */
 }
 
 /* 🟢 Botón "Crear Nuevo Producto" */
