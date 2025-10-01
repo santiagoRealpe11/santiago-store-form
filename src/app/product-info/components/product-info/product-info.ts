@@ -5,11 +5,10 @@ import { CurrencyPipe, UpperCasePipe, SlicePipe } from '@angular/common';
 // Angular Material imports
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-
 import { ProductModel } from '../../../core/models/product.model';
 import { CartService } from '../../../core/services/cart';
 @Component({
-  selector: 'app-product',
+  selector: 'app-product-info',
   standalone: true,
   imports: [RouterLink, CurrencyPipe, UpperCasePipe, SlicePipe, MatCardModule, MatButtonModule],
   templateUrl: './product-info.html',

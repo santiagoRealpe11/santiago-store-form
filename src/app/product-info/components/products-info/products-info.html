@@ -1,1 +1,17 @@
-<p>products-info works!</p>
+<div class="product-page-container">
+  <h1 class="page-title">Catálogo de Productos</h1>
+  
+  <div class="product-grid">
+    
+    @for (product of products; track product.id) {
+      <app-product-info
+        (productClicked)="clickProduct($event)"
+        [product]="product">
+      </app-product-info>
+    } @empty {
+      <div class="loading-message">
+        Cargando productos o la lista está vacía...
+      </div>
+    }
+  </div>
+</div>

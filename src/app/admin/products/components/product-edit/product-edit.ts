@@ -8,7 +8,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { CommonModule } from '@angular/common'; // Necesario para standalone
 import { Observable } from 'rxjs';
 import { ProductModel } from '../../../../core/models/product.model';
-import { MyValidators } from '../../../../../utils/validators';
+import { MyValidators } from '../../../../utils/validators';
 import { ProductsService } from '../../../../core/services/products/products-service';
 
 @Component({

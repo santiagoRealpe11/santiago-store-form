@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 
 import { getDownloadURL, ref, uploadBytesResumable, Storage } from '@angular/fire/storage';
-import { MyValidators } from '../../../../../utils/validators';
+import { MyValidators } from '../../../../utils/validators';
 import { ProductsService } from '../../../../core/services/products/products-service';
 
 @Component({
@@ -32,7 +32,7 @@ export class ProductCreate {
   private storage = inject(Storage);
 
   form = this.fb.group({
-    id: [''], 
+    id: [''],
     title: ['', [Validators.required]],
     price: ['', [Validators.required, MyValidators.isPriceValid]],
     description: ['', [Validators.required]],
