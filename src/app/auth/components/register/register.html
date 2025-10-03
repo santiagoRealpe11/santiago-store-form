@@ -35,26 +35,61 @@
             />
             @if (form.get('password')?.invalid && form.get('password')?.touched) {
             <mat-error>Mínimo 6 caracteres</mat-error>
+            } @if (form.get('password')?.hasError('invalid_password')) {
+            <mat-error>Debe tener un numero</mat-error>
             }
           </mat-form-field>
+          <div class="form-field-wrapper">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Confirmar contraseña</mat-label>
+              <input
+                placeholder="••••••••"
+                formControlName="confirmPassword"
+                matInput
+                type="password"
+                autocomplete="new-password"
+                [class.error-input]="
+                  form.get('confirmPassword')?.touched &&
+                  (form.get('confirmPassword')?.invalid || form.hasError('passwordMismatch'))
+                "
+              />
+            </mat-form-field>
 
+            @if (form.get('confirmPassword')?.touched) {
+            <div class="error-message">
+              @if (form.get('confirmPassword')?.hasError('required')) { Este campo es requerido }
+              @else if (form.hasError('passwordMismatch') && form.get('confirmPassword')?.value) {
+              Las contraseñas no coinciden }
+            </div>
+            }
+          </div>
+          <!-- Tipo de cuenta -->
+          <div class="account-type-section">
+            <label class="section-label">Tipo de cuenta</label>
+            <mat-radio-group formControlName="type" class="radio-group">
+              <mat-radio-button value="company" class="radio-option">Empresa</mat-radio-button>
+              <mat-radio-button value="customer" class="radio-option">Cliente</mat-radio-button>
+            </mat-radio-group>
+          </div>
+
+          <!-- Campo Company Name (solo si es empresa) -->
+          @if (form.get('type')?.value === 'company') {
           <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Confirmar contraseña</mat-label>
+            <mat-label>Nombre de la empresa</mat-label>
             <input
-              placeholder="••••••••"
-              formControlName="confirmPassword"
+              placeholder="Ingresa el nombre de tu empresa"
+              formControlName="companyName"
               matInput
-              type="password"
-              autocomplete="new-password"
+              type="text"
             />
-            @if (form.get('confirmPassword')?.invalid && form.get('confirmPassword')?.touched) {
+            @if (form.get('companyName')?.invalid && form.get('companyName')?.touched) {
             <mat-error>Este campo es requerido</mat-error>
-            } @if (form.hasError('passwordMismatch') && form.get('confirmPassword')?.touched) {
-            <mat-error>Las contraseñas no coinciden</mat-error>
             }
           </mat-form-field>
+          }
         </mat-card-content>
 
+        <!-- PARTE DEL BOTON -->
         <mat-card-actions class="register-actions">
           <button
             [disabled]="form.invalid"

@@ -9,7 +9,7 @@ export const CATEGORIES_ROUTES: Routes = [
   },
   {
     path: 'create',
-    component: Categories
+    component: CategoryForm
   },
   {
     path: 'edit/:id',

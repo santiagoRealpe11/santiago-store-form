@@ -1,0 +1,241 @@
+.category-container {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.category-wrapper {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+}
+
+.category-form {
+  width: 100%;
+  height: auto;
+}
+
+.category-card {
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background: white;
+}
+
+.category-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px 30px;
+  margin-bottom: 0;
+  display: flex;
+  justify-content: center;
+
+  .category-title {
+    color: white;
+    text-align: center;
+    margin: 0;
+
+    h1 {
+      font-size: 32px;
+      font-weight: 600;
+      margin: 0 0 8px 0;
+      letter-spacing: -0.5px;
+    }
+
+    .subtitle {
+      font-size: 16px;
+      opacity: 0.9;
+      margin: 0;
+      margin-top: 20px;
+      font-weight: 400;
+    }
+  }
+}
+
+.category-content {
+  padding: 30px 20px 16px;
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  mat-form-field {
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        background-color: #f8f9fa;
+      }
+
+      .mat-mdc-form-field-focus-overlay {
+        background-color: transparent;
+      }
+
+      .mat-mdc-form-field-error {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+/* ============================================
+   ESTILOS PARA EL INPUT DE ARCHIVO
+   ============================================ */
+
+/* Contenedor del input file */
+input[type='file'] {
+  width: 100%;
+  padding: 20px;
+  border: 2px dashed #d0d5dd;
+  border-radius: 12px;
+  background-color: #f8f9fa;
+  cursor: pointer;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  margin-bottom: 12px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+input[type='file']:hover {
+  border-color: #667eea;
+  background-color: #f0f2ff;
+  transform: translateY(-1px);
+}
+
+input[type='file']:focus {
+  outline: none;
+  border-color: #667eea;
+  background-color: #f0f2ff;
+  box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+}
+
+/* Botón "Seleccionar archivo" */
+input[type='file']::file-selector-button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 16px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+}
+
+input[type='file']::file-selector-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.5);
+}
+
+input[type='file']::file-selector-button:active {
+  transform: translateY(0);
+}
+
+/* ============================================
+   VISTA PREVIA DE LA IMAGEN
+   ============================================ */
+
+.image-preview {
+  margin-top: 10px;
+  padding: 16px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  text-align: center;
+}
+
+.image-preview .preview-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  margin: 0 0 12px 0;
+}
+
+.image-preview .preview-img {
+  width: 80%; /* Que ocupe todo el ancho disponible */
+  max-height: 250px; /* Limita la altura */
+  object-fit: contain; /* No recorta la imagen */
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+
+.category-actions {
+  padding: 0 32px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .save-button {
+    width: 100%;
+    height: 48px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 600px) {
+  .category-container {
+    padding: 20px 16px;
+  }
+
+  .category-wrapper {
+    max-width: 100%;
+  }
+
+  .category-header {
+    padding: 32px 20px 24px;
+
+    .category-title h1 {
+      font-size: 28px;
+    }
+
+    .category-title .subtitle {
+      font-size: 14px;
+    }
+  }
+
+  .category-content {
+    padding: 32px 24px 20px;
+  }
+
+  .category-actions {
+    padding: 0 24px 32px;
+  }
+
+  .file-upload-container {
+    min-height: 160px;
+  }
+
+  .image-preview .preview-img {
+    max-width: 100%;
+    max-height: 180px; /* Ajusta la altura en móvil */
+  }
+}

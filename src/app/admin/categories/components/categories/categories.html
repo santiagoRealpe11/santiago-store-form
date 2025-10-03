@@ -1,1 +1,42 @@
-<p>categories works!</p>
+<mat-card>
+  <mat-card-title>Lista de Categorías</mat-card-title>
+  <mat-card-content>
+    <button mat-raised-button color="primary" (click)="goToCreate()">
+      ➕ Nueva Categoría
+    </button>
+
+    @if (isLoading) {
+      <div class="loading">⏳ Cargando categorías...</div>
+    } @else {
+      @if (categories.length === 0) {
+        <div class="empty">⚠️ No hay categorías disponibles</div>
+      } @else {
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Imagen</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (category of categories; track category.id) {
+              <tr>
+                <td>{{ category.id }}</td>
+                <td>{{ category.name }}</td>
+                <td>
+                  <img [src]="category.image" alt="{{ category.name }}" />
+                </td>
+                <td>
+                  <button class="btn edit" (click)="editCategory(category.id)">Editar</button>
+                  <button class="btn delete" (click)="deleteCategory(category.id)">Eliminar</button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    }
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,94 @@
+.custom-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+mat-card-title {
+  display: flex;
+  justify-content: center;
+  padding: 10px 0px;
+}
+
+.custom-table thead {
+  background: white;
+}
+
+.custom-table th {
+  text-align: left;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.custom-table td {
+  padding: 14px;
+  font-size: 14px;
+  color: #444;
+  border-bottom: 1px solid #eee;
+}
+
+.custom-table tr:hover {
+  background: #f4f6f9;
+  transition: background 0.25s ease;
+}
+
+.custom-table img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.price {
+  font-weight: bold;
+  color: #2e7d32; /* verde */
+}
+
+.btn {
+  border: none;
+  padding: 8px 14px;
+  margin: 0 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn.edit {
+  background: #e3f2fd;
+  color: #1976d2;
+  border: 1px solid #90caf9;
+}
+
+.btn.edit:hover {
+  background: #1976d2;
+  color: #fff;
+}
+
+.btn.delete {
+  background: #ffebee;
+  color: #c62828;
+  border: 1px solid #ef9a9a;
+}
+
+.btn.delete:hover {
+  background: #c62828;
+  color: #fff;
+}
+
+.loading,
+.empty {
+  margin-top: 20px;
+  font-size: 15px;
+  color: #666;
+  text-align: center;
+}

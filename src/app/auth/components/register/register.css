@@ -27,19 +27,19 @@
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 40px 24px 30px;
   margin-bottom: 0;
-  
+
   .register-title {
     color: white;
     text-align: center;
     margin: 0;
-    
+
     h1 {
       font-size: 32px;
       font-weight: 600;
       margin: 0 0 8px 0;
       letter-spacing: -0.5px;
     }
-    
+
     .subtitle {
       font-size: 16px;
       opacity: 0.9;
@@ -51,20 +51,88 @@
 
 .register-content {
   padding: 40px 32px 24px;
-  
+
   .full-width {
     width: 100%;
-    margin-bottom: 16px;
+    margin-bottom: 25px;
   }
-  
+
   mat-form-field {
     ::ng-deep {
       .mat-mdc-text-field-wrapper {
         background-color: #f8f9fa;
       }
-      
+
       .mat-mdc-form-field-focus-overlay {
         background-color: transparent;
+      }
+    }
+  }
+}
+.form-field-wrapper {
+  margin-bottom: 20px;
+}
+
+.error-message {
+  color: #c91a3f;
+  font-size: 12px;
+  margin-top: -40px;
+  padding-left: 16px;
+}
+
+/* Estilos para la sección de tipo de cuenta */
+.account-type-section {
+  margin-bottom: 25px;
+
+  .section-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 12px;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 24px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+
+    .radio-option {
+      flex: 1;
+
+      ::ng-deep {
+        .mdc-form-field {
+          width: 100%;
+        }
+
+        .mdc-radio {
+          padding: 8px;
+        }
+
+        .mdc-label {
+          font-size: 15px;
+          font-weight: 500;
+          color: rgba(0, 0, 0, 0.87);
+        }
+
+        .mdc-radio__background {
+          border-color: #667eea;
+        }
+
+        .mdc-radio--checked {
+          .mdc-radio__background {
+            .mdc-radio__outer-circle,
+            .mdc-radio__inner-circle {
+              border-color: #667eea;
+            }
+            .mdc-radio__inner-circle {
+              background-color: #667eea;
+            }
+          }
+        }
       }
     }
   }
@@ -75,7 +143,7 @@
   display: flex;
   flex-direction: column;
   gap: 16px;
-  
+
   .register-button {
     width: 100%;
     height: 48px;
@@ -86,28 +154,28 @@
     letter-spacing: 0.5px;
     box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
     transition: all 0.3s ease;
-    
+
     &:hover:not(:disabled) {
       transform: translateY(-2px);
       box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
     }
-    
+
     &:disabled {
       opacity: 0.6;
     }
   }
-  
+
   .login-link {
     text-align: center;
     font-size: 14px;
     color: #666;
-    
+
     a {
       color: #667eea;
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s ease;
-      
+
       &:hover {
         color: #764ba2;
         text-decoration: underline;
@@ -116,24 +184,28 @@
   }
 }
 
-
 @media (max-width: 600px) {
   .register-container {
     padding: 16px;
   }
-  
+
   .register-header {
     padding: 32px 20px 24px;
-    
+
     .register-title h1 {
       font-size: 28px;
     }
   }
-  
+
   .register-content {
     padding: 32px 24px 20px;
   }
-  
+
+  .account-type-section .radio-group {
+    flex-direction: column;
+    gap: 12px;
+  }
+
   .register-actions {
     padding: 0 24px 32px;
   }

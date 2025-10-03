@@ -1,0 +1,202 @@
+<form [formGroup]="form" (ngSubmit)="save($event)">
+  <!-- NAME Y LASTNAME -->
+  <div formGroupName="fullName">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input matInput type="text" formControlName="name" />
+      @if (isNameFieldValid) {
+      <mat-icon matSuffix>done</mat-icon>
+      } @if (isNameFieldInvalid) {
+      <mat-icon matSuffix>close</mat-icon>
+      } @if(nameField.hasError('required')){
+      <mat-error>Este campo es requerido</mat-error>
+      } @if(nameField.hasError('maxlength')){
+      <mat-error>El número máximo es de 10 caracteres</mat-error>
+      } @if(nameField.hasError('pattern')){
+      <mat-error>Solo se permiten letras</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Last Name</mat-label>
+      <input matInput type="text" formControlName="lastName" />
+      @if (isLastNameFieldValid) {
+      <mat-icon matSuffix>done</mat-icon>
+      } @if (isLastNameFieldInvalid) {
+      <mat-icon matSuffix>close</mat-icon>
+      } @if(lastNameField.hasError('required')){
+      <mat-error>Este campo es requerido</mat-error>
+      } @if(lastNameField.hasError('maxlength')){
+      <mat-error>El número máximo es de 10 caracteres</mat-error>
+      } @if(lastNameField.hasError('pattern')){
+      <mat-error>Solo se permiten letras</mat-error>
+      }
+    </mat-form-field>
+  </div>
+
+  <!-- EMAIL -->
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+    <mat-icon matPrefix>email</mat-icon>
+    @if (isEmailFieldValid) {
+    <mat-icon matSuffix>done</mat-icon>
+    } @if (isEmailFieldInvalid) {
+    <mat-icon matSuffix>close</mat-icon>
+    } @if(emailField.hasError('required')){
+    <mat-error>Este campo es requerido</mat-error>
+    } @if(emailField.hasError('email')){
+    <mat-error>Este no es un email válido</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- PHONE -->
+  <mat-form-field appearance="fill">
+    <mat-label>Phone</mat-label>
+    <input matInput type="tel" formControlName="phone" />
+    <mat-icon matPrefix>phone</mat-icon>
+    @if(isPhoneFieldValid){
+    <mat-icon matSuffix>done</mat-icon>
+    } @if(isPhoneFieldInvalid){
+    <mat-icon matSuffix>close</mat-icon>
+    } @if (phoneField.hasError('required')) {
+    <mat-error>Este campo es requerido</mat-error>
+    } @if (phoneField.hasError('maxlength')) {
+    <mat-error>No puede tener más de 10 dígitos</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- DATE con DatePicker -->
+  <mat-form-field appearance="fill">
+    <mat-label>Date</mat-label>
+    <input matInput [matDatepicker]="datePicker" formControlName="date" />
+    <mat-datepicker-toggle matIconSuffix [for]="datePicker"></mat-datepicker-toggle>
+    <mat-datepicker #datePicker></mat-datepicker>
+    @if(dateField.hasError('required')){
+    <mat-error>Este campo es requerido</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- MONTH con DatePicker (solo mes y año) -->
+  <mat-form-field appearance="fill">
+    <mat-label>Month</mat-label>
+    <input matInput [matDatepicker]="monthPicker" formControlName="month" />
+    <mat-datepicker-toggle matIconSuffix [for]="monthPicker"></mat-datepicker-toggle>
+    <mat-datepicker
+      #monthPicker
+      startView="year"
+      (monthSelected)="setMonthAndYear($event, monthPicker)"
+    ></mat-datepicker>
+  </mat-form-field>
+
+  <!-- AGE -->
+  <mat-form-field appearance="fill">
+    <mat-label>Age</mat-label>
+    <input matInput type="number" formControlName="age" />
+    <mat-icon matPrefix>person</mat-icon>
+    @if(isAgeFieldValid){
+    <mat-icon matSuffix>done</mat-icon>
+    } @if(isAgeFieldInvalid){
+    <mat-icon matSuffix>close</mat-icon>
+    } @if(ageField.hasError('required')){
+    <mat-error>Este campo es requerido</mat-error>
+    } @if(ageField.hasError('min')){
+    <mat-error>Debe ser mayor de edad</mat-error>
+    } @if(ageField.hasError('max')){
+    <mat-error>Debe ser menor de 100 años</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- PASSWORD -->
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput type="password" formControlName="password" />
+    <mat-icon matPrefix>lock</mat-icon>
+  </mat-form-field>
+
+
+  <!-- WEEK con DatePicker (calcula semana del año) -->
+  <mat-form-field appearance="fill">
+    <mat-label>Week</mat-label>
+    <input matInput [matDatepicker]="weekPicker" formControlName="week" />
+    <mat-datepicker-toggle matIconSuffix [for]="weekPicker"></mat-datepicker-toggle>
+    <mat-datepicker #weekPicker></mat-datepicker>
+    <mat-hint>Selecciona una fecha para elegir la semana</mat-hint>
+  </mat-form-field>
+
+  <!-- TIME -->
+  <mat-form-field appearance="fill">
+    <mat-label>Time</mat-label>
+    <input matInput type="datetime-local" formControlName="time" />
+    <mat-icon matPrefix>schedule</mat-icon>
+  </mat-form-field>
+
+  <!-- SEARCH -->
+  <mat-form-field appearance="fill">
+    <mat-label>Search</mat-label>
+    <input matInput type="search" formControlName="search" />
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+
+  <!-- DESCRIPTION -->
+  <mat-form-field appearance="fill">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description" rows="4"></textarea>
+    <mat-icon matPrefix>description</mat-icon>
+  </mat-form-field>
+
+  <!-- CATEGORY -->
+  <mat-form-field appearance="fill">
+    <mat-label>Category</mat-label>
+    <mat-select formControlName="category">
+      <mat-option value="category-1">Category 1</mat-option>
+      <mat-option value="category-2">Category 2</mat-option>
+      <mat-option value="category-3">Category 3</mat-option>
+      <mat-option value="category-4">Category 4</mat-option>
+    </mat-select>
+    <mat-icon matPrefix>category</mat-icon>
+  </mat-form-field>
+
+  <!-- TAGS -->
+  <mat-form-field appearance="fill">
+    <mat-label>Tags</mat-label>
+    <mat-select formControlName="tag" multiple>
+      <mat-option value="tag-1">Tag 1</mat-option>
+      <mat-option value="tag-2">Tag 2</mat-option>
+      <mat-option value="tag-3">Tag 3</mat-option>
+      <mat-option value="tag-4">Tag 4</mat-option>
+    </mat-select>
+    <mat-icon matPrefix>label</mat-icon>
+  </mat-form-field>
+
+  <!-- AGREE (Checkbox) -->
+  <div class="checkbox-field">
+    <mat-checkbox formControlName="agree"> Acepto los términos y condiciones </mat-checkbox>
+    @if(isAgreeFieldInvalid){
+    <div class="error-message">Debes aceptar los términos</div>
+    }
+  </div>
+
+  <!-- GENDER (Radio buttons) -->
+  <div class="radio-group">
+    <label>Género:</label>
+    <mat-radio-group formControlName="gender">
+      <mat-radio-button value="male">Masculino</mat-radio-button>
+      <mat-radio-button value="female">Femenino</mat-radio-button>
+      <mat-radio-button value="other">Otro</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- ZONE (Radio buttons) -->
+  <div class="radio-group">
+    <label>Zona:</label>
+    <mat-radio-group formControlName="zone">
+      <mat-radio-button value="zona 1">Zona 1</mat-radio-button>
+      <mat-radio-button value="zona 2">Zona 2</mat-radio-button>
+      <mat-radio-button value="zona 3">Zona 3</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <!-- SUBMIT BUTTON -->
+  <button mat-raised-button color="primary" type="submit">Enviar</button>
+</form>

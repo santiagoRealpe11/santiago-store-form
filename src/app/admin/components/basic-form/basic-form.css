@@ -1,0 +1,119 @@
+/* Estilos generales del formulario */
+form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Todos los mat-form-field ocupan el ancho completo */
+form mat-form-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+/* Campos personalizados (range, color, week) */
+.custom-field {
+  width: 100%;
+  margin: 20px 0;
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  background-color: #f5f5f5;
+}
+
+.custom-field label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+  margin-bottom: 12px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.custom-field mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.custom-field input[type='color'],
+.custom-field input[type='range'],
+.custom-field input[type='week'] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  border-radius: 4px;
+  background-color: white;
+}
+
+.custom-field input[type='range'] {
+  cursor: pointer;
+}
+
+/* Estilos para los checkboxes */
+.checkbox-field {
+  margin: 20px 0;
+}
+
+.checkbox-field .error-message {
+  color: #f44336;
+  font-size: 0.75rem;
+  margin-top: 8px;
+  display: block;
+}
+
+/* Estilos para los radio buttons */
+.radio-group {
+  margin: 20px 0;
+}
+
+.radio-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.radio-group mat-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.radio-group mat-radio-button {
+  margin: 4px 0;
+}
+
+/* Botón de enviar */
+button[type='submit'] {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  font-size: 16px;
+}
+
+/* Mensajes de error antiguos (por si acaso) */
+.messages {
+  opacity: 0;
+  transition: all 0.5s ease-in;
+}
+
+.messages.active {
+  opacity: 1;
+}
+
+.messages strong {
+  color: #f44336;
+  font-size: 0.75rem;
+  display: block;
+  margin-top: 4px;
+}
+
+/* Estilos para inputs válidos e inválidos (legacy) */
+input.is-valid {
+  border: 2px solid green;
+}
+
+input.is-invalid {
+  border: 2px solid red;
+}

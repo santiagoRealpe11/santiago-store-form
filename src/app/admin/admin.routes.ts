@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { Nav } from './components/nav/nav';
+import { BasicForm } from './components/basic-form/basic-form';
 
 export const ADMIN_ROUTES: Routes = [
   {
@@ -24,6 +25,10 @@ export const ADMIN_ROUTES: Routes = [
         loadChildren: () =>
           import('./categories/categories.routes').then((m) => m.CATEGORIES_ROUTES),
       },
+      {
+        path:'basic',
+        component: BasicForm
+      }
     ],
   },
 ];

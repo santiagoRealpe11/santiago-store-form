@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 // Angular Material imports
 import { MatCardModule } from '@angular/material/card';
@@ -15,15 +15,16 @@ import { AuthService } from '../../../core/services/auth';
   standalone: true,
   imports: [
     ReactiveFormsModule,
+    RouterLink,
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   templateUrl: './login.html',
-  styleUrls: ['./login.css']
+  styleUrls: ['./login.css'],
 })
-export class Login{
+export class Login {
   private formBuilder = inject(FormBuilder);
   private router = inject(Router);
   private authService = inject(AuthService);
@@ -34,14 +35,14 @@ export class Login{
     this.form = this.buildForm();
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   login(event: Event): void {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      this.authService.login(value.email, value.password)
+      this.authService
+        .login(value.email, value.password)
         .then(() => {
           this.router.navigate(['/admin']);
         })
@@ -54,7 +55,7 @@ export class Login{
   private buildForm(): FormGroup {
     return this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
 }
