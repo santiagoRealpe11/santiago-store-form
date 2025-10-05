@@ -1,20 +1,19 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatRadioModule } from '@angular/material/radio';
-import { Router, RouterLink } from '@angular/router';
-import { CategoriesService } from '../../../../core/services/categories';
-import { HttpClient } from '@angular/common/http';
-import { Storage, ref, uploadBytes, getDownloadURL } from '@angular/fire/storage'; // ✅ Importa esto
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 
+import { HttpClient } from '@angular/common/http';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { MyValidators } from '../../../../utils/validators';
+import { categoryModel } from '../../../../core/models/category.model';
+import { CategoriesService } from '../../../../core/services/categories';
 @Component({
   selector: 'app-category-form',
   imports: [
     MatCardModule,
-    RouterLink,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -27,11 +26,21 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 export class CategoryForm implements OnInit {
   private formBuilder = inject(FormBuilder);
   private categoriesService = inject(CategoriesService);
-  private router = inject(Router);
-  private storage = inject(Storage); // ✅ Inyecta Storage
   private http = inject(HttpClient);
   form: FormGroup;
   isUploading = false;
+  isNew = true;
+
+  @Input()
+  set category(data: categoryModel) {
+    if (data) {
+      this.isNew = false;
+      this.form.patchValue(data);
+    }
+  }
+
+  @Output() create = new EventEmitter<categoryModel>();
+  @Output() update = new EventEmitter<categoryModel>();
 
   constructor() {
     this.form = this.buildForm();
@@ -41,7 +50,11 @@ export class CategoryForm implements OnInit {
 
   private buildForm(): FormGroup {
     return this.formBuilder.group({
-      name: ['', [Validators.required]],
+      name: [
+        '',
+        [Validators.required, Validators.minLength(4)],
+        MyValidators.validateCategory(this.categoriesService),
+      ],
       image: ['', [Validators.required]],
     });
   }
@@ -56,23 +69,14 @@ export class CategoryForm implements OnInit {
 
   save() {
     if (this.form.valid) {
-      this.crearCategory();
+      if (this.isNew) {
+        this.create.emit(this.form.value);
+      } else {
+        this.update.emit(this.form.value);
+      }
     } else {
       this.form.markAllAsTouched();
     }
-  }
-
-  private crearCategory() {
-    const data = this.form.value;
-    this.categoriesService.createCategory(data).subscribe({
-      next: (rta) => {
-        console.log('✅ Categoría creada:', rta);
-        this.router.navigate(['/admin/categories']);
-      },
-      error: (err) => {
-        console.error('❌ Error:', err);
-      },
-    });
   }
 
   uploadFile(event: Event) {

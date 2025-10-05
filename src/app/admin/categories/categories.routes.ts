@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Categories } from './components/categories/categories';
 import { CategoryForm} from './components/category-form/category-form';
-
+import { CategoryContainer } from './containers/category-container/category-container';
 export const CATEGORIES_ROUTES: Routes = [
   {
     path: '',
@@ -9,10 +9,10 @@ export const CATEGORIES_ROUTES: Routes = [
   },
   {
     path: 'create',
-    component: CategoryForm
+    component: CategoryContainer
   },
   {
     path: 'edit/:id',
-    component: CategoryForm
+    component: CategoryContainer
   }
 ];

@@ -1,5 +1,6 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
-
+import { map } from 'rxjs';
+import { CategoriesService } from '../core/services/categories';
 export class MyValidators {
   static isPriceValid(control: AbstractControl): ValidationErrors | null {
     const value = control.value;
@@ -17,7 +18,7 @@ export class MyValidators {
     return null;
   }
 
-    static passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
+  static passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
     const password = control.get('password');
     const confirmPassword = control.get('confirmPassword');
 
@@ -26,6 +27,20 @@ export class MyValidators {
     }
 
     return password.value === confirmPassword.value ? null : { passwordMismatch: true };
+  }
+
+  static validateCategory(service: CategoriesService) {
+    return (control: AbstractControl) => {
+      const value = control.value;
+      return service.checkAvailability(value).pipe(
+        map((response) => {
+          const isAvailable = response;
+          if (!isAvailable) return { not_available: true };
+
+          return null;
+        })
+      );
+    };
   }
 }
 

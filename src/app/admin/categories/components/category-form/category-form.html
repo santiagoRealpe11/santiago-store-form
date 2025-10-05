@@ -21,6 +21,11 @@
             @if(nameField?.touched && nameField?.invalid){ @if (nameField?.hasError('required')) {
             <mat-error>El nombre es requerido</mat-error>
             } }
+            @if(nameField?.hasError('minlength')){
+                <mat-error>debe tener como mínimo 4 caracteres</mat-error>
+            }@else if(nameField?.hasError('not_available')){
+                <mat-error>Este nombre ya lo tiene otra categoria</mat-error>
+            }
           </mat-form-field>
 
           <!-- PARTE PARA CARGA DE LA IMAGEN -->
@@ -52,7 +57,11 @@
             color="primary"
             class="save-button"
           >
-            Guardar categoría
+            @if(isNew){
+            <span>Crear Categoria</span>
+            }@else{
+            <span>Editar Categoria</span>
+            }
           </button>
         </mat-card-actions>
       </mat-card>

@@ -5,11 +5,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { CategoriesService } from '../../../../core/services/categories';
 import { categoryModel } from '../../../../core/models/category.model';
-
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-categories',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule],
+  imports: [CommonModule, MatCardModule, MatButtonModule, RouterLink],
   templateUrl: './categories.html',
   styleUrls: ['./categories.css'],
 })
@@ -36,11 +36,6 @@ export class Categories implements OnInit {
         this.isLoading = false;
       },
     });
-  }
-
-  // NUEVO: navega a la ruta de edición para la categoría seleccionada
-  editCategory(id: number) {
-    this.router.navigate(['/admin/categories/edit', id]);
   }
 
   deleteCategory(id: number) {

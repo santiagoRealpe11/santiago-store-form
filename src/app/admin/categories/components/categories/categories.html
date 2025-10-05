@@ -29,7 +29,7 @@
                   <img [src]="category.image" alt="{{ category.name }}" />
                 </td>
                 <td>
-                  <button class="btn edit" (click)="editCategory(category.id)">Editar</button>
+                  <button [routerLink]="['edit', category.id]" class="btn edit" >Editar</button>
                   <button class="btn delete" (click)="deleteCategory(category.id)">Eliminar</button>
                 </td>
               </tr>
