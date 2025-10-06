@@ -9,7 +9,7 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="small-width">
           <mat-label>Id</mat-label>
-          <input matInput placeholder="Ingrese ID" formControlName="id" type="text">
+          <input matInput placeholder="Ingrese ID" formControlName="id" type="text" />
         </mat-form-field>
       </div>
 
@@ -17,7 +17,13 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="small-width">
           <mat-label>Título</mat-label>
-          <input matInput placeholder="Ingrese título" formControlName="title" type="text">
+          <input matInput placeholder="Ingrese título" formControlName="title" type="text" />
+          @if (form.get('title')?.touched && form.get('title')?.invalid) { @if
+          (form.get('title')?.hasError('required')) {
+          <mat-error>El título es requerido</mat-error>
+          } @if (form.get('title')?.hasError('minlength')) {
+          <mat-error>El título debe tener al menos 5 caracteres</mat-error>
+          } }
         </mat-form-field>
       </div>
 
@@ -25,34 +31,79 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="small-width">
           <mat-label>Precio</mat-label>
-          <input matInput placeholder="Ingrese precio" formControlName="price" type="number">
+          <input matInput placeholder="Ingrese precio" formControlName="price" type="number" />
           <mat-hint align="end">Máximo: 10000</mat-hint>
+          @if (priceField?.touched && priceField?.invalid) { @if
+          (priceField?.hasError('price_invalid')) {
+          <mat-error>No te debes pasar de 10000</mat-error>
+          } @if (priceField?.hasError('required')) {
+          <mat-error>El precio es requerido</mat-error>
+          } }
         </mat-form-field>
-
-        @if (priceField?.errors && priceField?.dirty) {
-          @if (priceField?.hasError('price_invalid')) {
-            <mat-error>No te debes pasar de 10000</mat-error>
-          }
-          @if (priceField?.hasError('required')) {
-            <mat-error>El campo es requerido</mat-error>
-          }
-        }
       </div>
 
       <!-- Descripción -->
       <div class="form-row">
         <mat-form-field appearance="outline" class="small-width">
           <mat-label>Descripción</mat-label>
-          <textarea matInput placeholder="Escribe aquí" formControlName="description" rows="4"></textarea>
+          <textarea
+            matInput
+            placeholder="Escribe aquí"
+            formControlName="description"
+            rows="4"
+          ></textarea>
+          @if (form.get('description')?.touched && form.get('description')?.invalid) { @if
+          (form.get('description')?.hasError('required')) {
+          <mat-error>La descripción es requerida</mat-error>
+          } @if (form.get('description')?.hasError('minlength')) {
+          <mat-error>La descripción debe tener al menos 10 caracteres</mat-error>
+          } }
         </mat-form-field>
       </div>
 
+      <!-- CATEGORY ID -->
+
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="small-width">
+          <mat-label>Categories</mat-label>
+          <mat-select formControlName="categoryId">
+            @for (category of categories; track category.id) {
+            <mat-option [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- STEPPER
+
+      <div class="form-row">
+        <app-stepper formControlName="stock"></app-stepper>
+      </div> -->
+
       <!-- Imagen -->
+
       <div class="form-row image-upload">
-        @if (imageUrl()) {
-          <img [src]="imageUrl()" alt="Vista previa" class="preview-image">
+        <label class="upload-label">Imagen del producto</label>
+
+        <input
+          type="file"
+          accept="image/*"
+          (change)="uploadFile($event)"
+          [disabled]="isUploading"
+        />
+
+        @if (isUploading) {
+        <p style="color: #667eea; margin-top: 8px">⏳ Subiendo imagen...</p>
+        } @if (form.get('image')?.touched && form.get('image')?.invalid) {
+        <div style="color: #f44336; font-size: 12px; margin-top: 8px">La imagen es requerida</div>
+        } @if (imageUrl()) {
+        <div style="margin-top: 16px">
+          <p style="font-size: 14px; color: rgba(0, 0, 0, 0.6)">Vista previa:</p>
+          <img [src]="imageUrl()" alt="Vista previa" class="preview-image" />
+        </div>
         }
-        <input type="file" (change)="uploadFile($event)">
       </div>
     </mat-card-content>
 

@@ -35,12 +35,26 @@ mat-card-title {
   width: 100%;
 }
 
+.upload-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+  margin-bottom: 8px;
+}
+
+.preview-image {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
 mat-form-field {
   width: 100%;
 }
 
-mat-label input{
-    height: 20px;
+mat-label input {
+  height: 20px;
 }
 mat-error {
   font-size: 0.85rem;

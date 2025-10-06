@@ -2,11 +2,12 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import Swiper from 'swiper';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import { Banner } from '../banner/banner';
-
+import { ReactiveFormsModule } from '@angular/forms';
+import { Search } from '../search/search';
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [Banner],
+  imports: [Banner, ReactiveFormsModule, Search],
   templateUrl: './home.html',
   styleUrls: ['./home.css'],
 })

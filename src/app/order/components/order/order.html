@@ -41,16 +41,88 @@
 
     <mat-step>
       <ng-template matStepLabel>Datos personales</ng-template>
+      <form [formGroup]="form" (ngSubmit)="save()">
+        <mat-card>
+          <mat-card-content>
+            <div class="step-content">
+              <h2>Información de envío</h2>
 
-      <div class="step-content">
-        <h2>Información de envío</h2>
-        <p>Formulario de datos personales aquí</p>
+              <mat-form-field class="full-width">
+                <mat-label>Nombre</mat-label>
+                <input
+                  placeholder="Nombre completo"
+                  formControlName="name"
+                  matInput
+                  type="text"
+                  required
+                />
+                @if (form.get('name')?.hasError('required') && form.get('name')?.touched) {
+                <mat-error>El nombre es obligatorio</mat-error>
+                }
+              </mat-form-field>
 
-        <div class="step-actions">
-          <button mat-button matStepperPrevious>Atrás</button>
-          <button mat-raised-button matStepperNext color="primary">Continuar</button>
-        </div>
-      </div>
+              <div class="add-address-section">
+                <button mat-raised-button color="primary" (click)="addAddressField()" type="button">
+                  <mat-icon>add</mat-icon>
+                  Agregar dirección
+                </button>
+              </div>
+
+              <div formArrayName="address" class="addresses-container">
+                @for (address of addressField.controls; track $index; let i = $index) {
+                <div [formGroupName]="i" class="address-group">
+                  <h3>Dirección {{ i + 1 }}</h3>
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Código Postal</mat-label>
+                    <input
+                      placeholder="Código postal"
+                      formControlName="zip"
+                      matInput
+                      type="text"
+                      required
+                    />
+                    @if (address.get('zip')?.hasError('required') && address.get('zip')?.touched) {
+                    <mat-error>El Código Postal es obligatorio</mat-error>
+                    }
+                  </mat-form-field>
+
+                  <mat-form-field class="full-width">
+                    <mat-label>Dirección completa</mat-label>
+                    <textarea
+                      placeholder="Calle, número, apartamento..."
+                      formControlName="text"
+                      matInput
+                      rows="3"
+                      required
+                    ></textarea>
+                    @if (address.get('text')?.hasError('required') && address.get('text')?.touched)
+                    {
+                    <mat-error>La dirección es obligatoria</mat-error>
+                    }
+                  </mat-form-field>
+
+                  <button
+                    mat-icon-button
+                    color="warn"
+                    (click)="removeAddressField(i)"
+                    type="button"
+                    class="remove-address-btn"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </div>
+                }
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-button matStepperPrevious type="button">Atrás</button>
+            <button mat-raised-button color="primary" type="submit">Continuar</button>
+          </mat-card-actions>
+        </mat-card>
+      </form>
     </mat-step>
 
     <mat-step>

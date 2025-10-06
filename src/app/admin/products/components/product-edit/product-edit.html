@@ -5,19 +5,15 @@
     </mat-card-header>
 
     <mat-card-content>
-      <!-- ID (readonly para no permitir cambios) -->
-      <div class="form-row">
-        <mat-form-field appearance="outline" class="small-width">
-          <mat-label>ID</mat-label>
-          <input matInput formControlName="id" type="text" readonly>
-        </mat-form-field>
-      </div>
-
       <!-- Título -->
       <div class="form-row">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Título</mat-label>
-          <input matInput placeholder="Ingrese título" formControlName="title" type="text">
+          <input matInput placeholder="Ingrese título" formControlName="title" type="text" />
+          @if (form.get('title')?.touched && form.get('title')?.invalid) { @if
+          (form.get('title')?.hasError('required')) {
+          <mat-error>El título es requerido</mat-error>
+          } }
         </mat-form-field>
       </div>
 
@@ -25,27 +21,51 @@
       <div class="form-row">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Precio</mat-label>
-          <input matInput placeholder="Ingrese precio" formControlName="price" type="number">
+          <input matInput placeholder="Ingrese precio" formControlName="price" type="number" />
           <mat-hint align="end">Máximo: 10000</mat-hint>
+          @if (priceField?.touched && priceField?.invalid) { @if
+          (priceField?.hasError('price_invalid')) {
+          <mat-error>No te debes pasar de 10000</mat-error>
+          } @if (priceField?.hasError('required')) {
+          <mat-error>El precio es requerido</mat-error>
+          } }
         </mat-form-field>
-
-        @if (priceField?.errors && priceField?.dirty) {
-          @if (priceField?.hasError('price_invalid')) {
-            <mat-error>No te debes pasar de 10000</mat-error>
-          }
-          @if (priceField?.hasError('required')) {
-            <mat-error>El campo es requerido</mat-error>
-          }
-        }
       </div>
 
       <!-- Descripción -->
       <div class="form-row">
         <mat-form-field appearance="outline" class="full-width">
           <mat-label>Descripción</mat-label>
-          <textarea matInput placeholder="Escribe aquí" formControlName="description" rows="4"></textarea>
+          <textarea
+            matInput
+            placeholder="Escribe aquí"
+            formControlName="description"
+            rows="4"
+          ></textarea>
+          @if (form.get('description')?.touched && form.get('description')?.invalid) { @if
+          (form.get('description')?.hasError('required')) {
+          <mat-error>La descripción es requerida</mat-error>
+          } }
         </mat-form-field>
       </div>
+
+      <!-- Categoría -->
+      <div class="form-row">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Categoría</mat-label>
+          <mat-select formControlName="categoryId">
+            @for (category of categories; track category.id) {
+            <mat-option [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+            }
+          </mat-select>
+          @if (form.get('categoryId')?.touched && form.get('categoryId')?.invalid) {
+          <mat-error>La categoría es requerida</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
     </mat-card-content>
 
     <mat-card-actions align="end">

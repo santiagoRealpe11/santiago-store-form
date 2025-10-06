@@ -1,0 +1,26 @@
+<div class="search-container">
+  <div class="search-box">
+    <mat-icon class="search-icon">search</mat-icon>
+    <input
+      type="search"
+      [formControl]="searchField"
+      placeholder="Busca GIFs..."
+      class="search-input"
+    />
+  </div>
+
+  @if (searchField.value && results.length > 0) {
+  <div class="results-grid">
+    @for (result of results; track result.url) {
+    <div class="gif-card">
+      <img [src]="result.url" [alt]="searchField.value" />
+    </div>
+    }
+  </div>
+  } @if (searchField.value && results.length === 0) {
+  <div class="no-results">
+    <mat-icon>sentiment_dissatisfied</mat-icon>
+    <p>No se encontraron resultados</p>
+  </div>
+  }
+</div>

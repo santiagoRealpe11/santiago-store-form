@@ -25,16 +25,16 @@
           </nav>
 
           <div class="cart-section">
-            <a
-              routerLink="/order"
-              mat-raised-button
-              [matBadge]="total$ | async"
-              matBadgeColor="warn"
+            <button 
+              routerLink="/order" 
+              mat-raised-button 
+              [matBadge]="total$ | async" 
+              matBadgeColor="warn" 
               class="cart-button"
             >
               <mat-icon>shopping_cart</mat-icon>
-              <span>Carrito</span>
-            </a>
+              <span class="cart-text">Carrito</span>
+            </button>
           </div>
         </div>
       </div>
